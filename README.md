@@ -12,4 +12,4 @@ By getting the good name to the club by excelling in various projects and compet
 
 ## What are your fields of interest, and how do you plab on working on them?
 
-My plan in the next 6 months is that first I want to develope my skills in a particular language(mostly python or c++) and master it while working on a project. Then I will try to get good marks in the end-semester exams. Then I would like to work on some open source project.
+My plan in the next 6 months is that first I want to develop my skills in a particular language(mostly python or c++) and master it while working on a project. Then I will try to get good marks in the end-semester exams. Then I would like to work on some open source project.
