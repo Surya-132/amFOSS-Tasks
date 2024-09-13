@@ -7,7 +7,7 @@ I'm fairly a newcomer in the field of programming and coding ('fairly' beacuse I
 
 ## How would you contribute back to the club?
 
-By getting the good name to the club by excelling in various projects and competitions assigned to me. And in the future semisters I would liket o mentor few students(so that I can improve my communication skills while helping my junior)
+By getting the good name to the club by excelling in various projects and competitions assigned to me. And in the future semesters I would like to mentor few students(so that I can improve my communication skills while helping my junior)
 
 
 ## What are your fields of interest, and how do you plab on working on them?
