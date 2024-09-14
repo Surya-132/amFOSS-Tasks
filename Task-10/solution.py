@@ -1,41 +1,64 @@
-import os
 import cv2
-import numpy as np
+import os
+from PIL import Image, ImageDraw
 
-assets_folder = './assets/'
-
-def overlay_non_white_pixels(base_img, overlay_img):
-    non_white_mask = np.any(overlay_img[:, :, :3] != [255, 255, 255], axis=-1)
-    for c in range(3):
-        base_img[non_white_mask, c] = overlay_img[non_white_mask, c]
-    return base_img
-
-def overlay_images(assets_folder):
-    images = []
-    image_files = sorted([f for f in os.listdir(assets_folder) if f.endswith('.png')])
+def find_dot_center(image_path):
+    image = cv2.imread(image_path)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    _, binary = cv2.threshold(gray, 240, 255, cv2.THRESH_BINARY_INV)
+    contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     
-    if not image_files:
-        print("No PNG images found in the assets folder.")
-        return
+    if not contours:
+        return None, None
 
-    for image_file in image_files:
-        img_path = os.path.join(assets_folder, image_file)
-        img = cv2.imread(img_path)
-        if img is not None:
-            images.append(img)
+    largest_contour = max(contours, key=cv2.contourArea)
+    moments = cv2.moments(largest_contour)
     
-    if not images:
-        print("No images were processed.")
-        return
+    if moments["m00"] == 0:
+        return None, None
+    
+    x = int(moments["m10"] / moments["m00"])
+    y = int(moments["m01"] / moments["m00"])
+    color = image[y, x]
+    
+    return (x, y), color
 
-    base_img = np.ones_like(images[0], dtype=np.uint8) * 255
+def sort_images(image_files):
+    import re
 
-    for img in images:
-        base_img = overlay_non_white_pixels(base_img, img)
+    def extract_number(filename):
+        match = re.search(r'(\d+)', filename)
+        return int(match.group(0)) if match else float('inf')
 
-    output_image = 'overlay_image.png'
-    cv2.imwrite(output_image, base_img)
-    print(f"Overlay image saved as {output_image}")
-    return base_img
+    return sorted(image_files, key=extract_number)
 
-result = overlay_images(assets_folder)
+def stitch_images(folder_path):
+    image_files = [f for f in os.listdir(folder_path) if f.endswith('.png')]
+    sorted_files = sort_images(image_files)
+
+    result_image = Image.new('RGB', (512, 512), (255, 255, 255))
+    draw = ImageDraw.Draw(result_image)
+    
+    last_position = None
+    last_color = None
+    
+    for image_name in sorted_files:
+        image_path = os.path.join(folder_path, image_name)
+        position, color = find_dot_center(image_path)
+        if position is None:
+            last_position = None
+            last_color = None
+            continue
+        
+        if last_position is not None:
+            draw.line([last_position, position], fill=tuple(color), width=5)
+        
+        last_position = position
+        last_color = color
+    
+    result_image.save('stitched_image.png')
+    print("Stitched image saved as stitched_image.png")
+
+folder_path = './assets'
+stitch_images(folder_path)
+
