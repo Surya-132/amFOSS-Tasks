@@ -1,0 +1,50 @@
+/*Styles to make my terminal and product displays look good.*/
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.terminal {
+    width: 80%;
+    max-width: 800px;
+    margin-top: 20px;
+    background: #000;
+    color: #0f0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#terminal {
+    width: 100%;
+    height: 200px;
+    background: #000;
+    color: #0f0;
+    border: none;
+    resize: none;
+}
+
+#commandInput {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+#products, #cart {
+    width: 80%;
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.product, .cart-item {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 5px;
+}
