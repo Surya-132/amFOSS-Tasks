@@ -34,7 +34,7 @@ READING_LIST_FILE = "reading_list.docx"
 ```
 ### Initializing the reading_list command, the code for its sub-commands and their responses
 
-
+```
 def initialize_reading_list():
     doc = Document()
     doc.add_heading('Reading List', 0)
@@ -143,10 +143,10 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "/help -  Get a list of all available commands"
     )
     await update.message.reply_text(help_text)
-
+```
 
 ### The commandhandlers
-
+```
     application.add_handler(CommandHandler("start", start))
     application.add_handler(book_handler)
     application.add_handler(preview_handler)
@@ -155,7 +155,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     application.add_handler(CommandHandler("list", list_command))
     application.add_handler(CommandHandler("help", help_command))
-
+```
 
 ## My  experience
 This project took longer than expected, and at times, I wondered if it was worth the effort.
