@@ -1,0 +1,4 @@
+I overlayed multiple PNG images from a specified folder onto a base image(Blank initially) . It starts by reading all PNG images in the assets_folder, sorting them, and loading them into a list. If no PNG images are found, the script prints a message and exits.
+For each loaded image, the function overlay_non_white_pixels is used to blend non-white pixels from the overlay image onto a base image. The base image is initially set to white and is updated to include the non-white pixels from each overlay image.
+The final step involves saving the combined image as overlay_image.png in the current directory. The overlay_non_white_pixels function creates a mask to identify non-white pixels in the overlay image and updates the corresponding pixels in the base image.
+The task was completed smoothly without an issue and didn't take as long as I expected it would.
