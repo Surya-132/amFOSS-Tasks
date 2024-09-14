@@ -67,7 +67,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data['action'] = None
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(" Welcome to Bookk_Lookk! Looking for your next great read? You've found the perfect place. Happy reading!")
+    await update.message.reply_text(" Welcome to Why_So_Long! Looking for your next great read? You've found the perfect place. Happy reading!")
 
 async def book(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text('Please type in the genre you are interested in.')
